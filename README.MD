@@ -46,14 +46,48 @@ Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pe
     - Mengajukan 2 atau lebih solution approach (algoritma atau pendekatan sistem rekomendasi).
 
 ## Data Understanding
-Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
+Dataset yang digunakan dalam proyek kali ini berasal dari kaggle, yaitu [Book Recommendation Dataset by Möbius - kaggle](https://www.kaggle.com/datasets/arashnic/book-recommendation-dataset). Terdapat 3 file dataset didalamnya berikut adalah daftar file-file dibawah ini : 
 
-Selanjutnya, uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+#### 1. Books.csv
+- Jumlah baris : 271360 sampel data
+- Jumlah kolom : 8 kolom 
+- Kondisi data : 
+  - Jumlah missing value : 7
+  - Jumlah duplicate value : 0
+- Daftar kolom atau fitur :
+    1. ISBN : merupakan ISBN dari buku
+    2. Book-Title : merupakan judul dari buku
+    3. Book-Author : merupakan nama lengkap dari penulis
+    4. Year-Of-Publication : merupakan tahun suatu buku diterbitkan
+    5. Publisher : merupakan nama penerbit
+    6. Image-URL-S : Thumbnail cover buku dalam ukuran kecil (S), menggunakan amazon link
+    7. Image-URL-M : Thumbnail cover buku dalam ukuran sedang (M), menggunakan amazon link
+    8. Image-URL-L : Thumbnail cover buku dalam ukuran besar (L), menggunakan amazon link
 
-Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
-- cuisine : merupakan jenis masakan yang disajikan pada restoran.
-- dst
+#### 2. Ratings.csv
+- Jumlah baris : 340556 sampel data
+- Jumlah kolom : 8 kolom 
+- Kondisi data : 
+  - Jumlah missing value : 0
+  - Jumlah duplicate value : 0
+- Daftar kolom atau fitur :
+    1. User-ID : merupakan ID unik dari user
+    2. Location : merupakan tempat tinggal atau lokasi dimana user berada
+    3. Age : merupakan nilai umur dari user
+    
+#### 3. Users.csv
+- Jumlah baris : 340556 sampel data
+- Jumlah kolom : 8 kolom 
+- Kondisi data : 
+  - Jumlah missing value : 110762
+  - Jumlah duplicate value : 0
+- Daftar kolom atau fitur :
+    1. User-ID : merupakan ID unik dari user
+    2. ISBN : merupakan ISBN dari buku
+    3. Book-Rating : merupakan rating dari suatu buku dalam rentang 0-10
+
+
+Terdapat beberapa file dataset yang memiliki missing value, mulai dari skala terkecil seperti pada file Books.csv sebanyak 7  hingga skala terbesar seperti pada  file Ratings.csv sebanyak 110762 , maka perlu untuk melihat distribusi dari data setiap fitur data agar dapat menentukan metode imputasi nilai null yang tepat.
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data beserta insight atau exploratory data analysis.

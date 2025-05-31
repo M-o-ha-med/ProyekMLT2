@@ -11,12 +11,6 @@ Sistem rekomendasi telah menjadi komponen utama dalam berbagai layanan digital s
 Sistem rekomendasi yang dibuat akan menggunakan dua pendekatan, yaitu collaborative filtering dan content-based filtering
 penelitian terdahulu menunjukkan bahwa penerapan sistem rekomendasi untuk penjualan buku terbukti berhasil dalam meningkatkan jumlah penjualan buku secara signifikan [3][4].
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
-- Menyertakan hasil riset terkait atau referensi. Referensi yang diberikan harus berasal dari sumber yang kredibel dan author yang jelas.
-- Format Referensi dapat mengacu pada penulisan sitasi [IEEE](https://journals.ieeeauthorcenter.ieee.org/wp-content/uploads/sites/7/IEEE_Reference_Guide.pdf), [APA](https://www.mendeley.com/guides/apa-citation-guide/) atau secara umum seperti [di sini](https://penerbitdeepublish.com/menulis-buku-membuat-sitasi-dengan-mudah/)
-- Sumber yang bisa digunakan [Scholar](https://scholar.google.com/)
-
 ### Referensi
 
 [1] Statista, "Audiobooks - Indonesia," [Online]. Available: https://www.statista.com/outlook/amo/media/books/audiobooks/indonesia. [Accessed: 29-May-2025].
@@ -34,20 +28,14 @@ penelitian terdahulu menunjukkan bahwa penerapan sistem rekomendasi untuk penjua
 ## Business Understanding
 
 ### Problem Statements
-
-Menjelaskan pernyataan masalah:
 - pendekatan manakah yang lebih efektif dalam membuat sistem rekomendasi ? apakah menggunakan collaborive filtering atau content-based filtering ?
 - metrik apa saja yang akan digunakan dalam mengukur performa dari dua sistem rekomendasi ?
 - apa saja kekurangan dan kelebihan dari sistem rekomendasi berdasarkan pendekatan collaborative filtering dan content-based filtering ? 
 
 ### Goals
-
-Menjelaskan tujuan proyek yang menjawab pernyataan masalah:
 - Untuk membuat sistem rekomendasi berdasarkan pendekatan collaborative filtering dan content-based filtering.
 - Untuk mencari sistem rekomendasi terbaik berdasarkan pengukuran performa menggunakan metrik precision@k, recall@k dan precision.
 - Untuk mengetahui kekurangan dan kelebihan dari sistem rekomendasi berdasarkan pendekatan collaborative filtering dan content-based filtering.
-
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
 
 ### Solution statements
 - Membuat dua model sistem rekomendasi menggunakan LightFM
@@ -144,6 +132,38 @@ Terdapat beberapa file dataset yang memiliki missing value, mulai dari skala ter
 
 ## Exploratory Data Analysis (EDA)
 
+### ratings_df
+#### Jumlah Data Null
+
+| Kolom                 | Jumlah Null |
+|-----------------------|--------------|
+| User-ID               | 0            |
+| ISBN                  | 0            |
+| Book-Rating           | 0            |
+
+#### Statistik deskriptif
+
+| Statistic | User-ID       | ISBN       | Book-Rating  |
+|-----------|---------------|------------|--------------|
+| count     | 1,149,780     | 1,149,780  | 1,149,780    |
+| unique    | NaN           | 340,556    | NaN          |
+| top       | NaN           | 0971880107 | NaN          |
+| freq      | NaN           | 2,502      | NaN          |
+| mean      | 140,386.4     | NaN        | 2.867        |
+| std       | 80,562.3      | NaN        | 3.854        |
+| min       | 2             | NaN        | 0            |
+| 25%       | 70,345        | NaN        | 0            |
+| 50%       | 141,010       | NaN        | 0            |
+| 75%       | 211,028       | NaN        | 7            |
+| max       | 278,854       | NaN        | 10           |
+
+
+#### Jumlah Data Duplikat
+
+Jumlah Dataset Duplikat : 0  
+
+------------------
+
 ### Books.csv
 #### Jumlah Data Null
 
@@ -158,53 +178,108 @@ Terdapat beberapa file dataset yang memiliki missing value, mulai dari skala ter
 | Image-URL-M           | 0            |
 | Image-URL-L           | 3            |
 
+#### Statistik deskriptif
+| Statistic            | ISBN      | Book-Title     | Book-Author     | Year-Of-Publication | Publisher   | Image-URL-S                                       | Image-URL-M                                       | Image-URL-L                                       |
+|----------------------|-----------|----------------|------------------|----------------------|-------------|---------------------------------------------------|---------------------------------------------------|---------------------------------------------------|
+| count                | 271360    | 271360         | 271358           | 271360               | 271358      | 271360                                            | 271360                                            | 271357                                            |
+| unique               | 271360    | 242135         | 102022           | 202                  | 16807       | 271044                                            | 271044                                            | 271041                                            |
+| top                  | 020130998X| Selected Poems | Agatha Christie  | 2002                 | Harlequin   | http://images.amazon.com/images/P/042509474X.0... | http://images.amazon.com/images/P/042509474X.0... | http://images.amazon.com/images/P/006091985X.0... |
+| freq                 | 1         | 27             | 632              | 13903                | 7535        | 2                                                 | 2                                                 | 2                                                 |
+
+
 #### Jumlah Data Duplikat
 
-| Deskripsi              | Jumlah |
-|------------------------|--------|
-| Duplikasi pada dataset | 0      |
+Jumlah Dataset Duplikat : 0  
 
-### Jumlah Data Null
+------------------
 
-| Kolom                 | Jumlah Null |
+
+### Users_df
+
+#### Jumlah Data Null
+
+| Kolom                 | Jumlah Null  |
 |-----------------------|--------------|
-| ISBN                  | 0            |
-| Book-Title            | 0            |
-| Book-Author           | 2            |
-| Year-Of-Publication   | 0            |
-| Publisher             | 2            |
-| Image-URL-S           | 0            |
-| Image-URL-M           | 0            |
-| Image-URL-L           | 3            |
+| User-ID               | 0            |
+| Location              | 0            |
+| Age                   | 110762       |
 
-### Jumlah Data Duplikat
+#### Statistik deskriptif
 
-| Deskripsi              | Jumlah |
-|------------------------|--------|
-| Duplikasi pada dataset | 0      |
-
-### Jumlah Data Null
-
-| Kolom                 | Jumlah Null |
-|-----------------------|--------------|
-| ISBN                  | 0            |
-| Book-Title            | 0            |
-| Book-Author           | 2            |
-| Year-Of-Publication   | 0            |
-| Publisher             | 2            |
-| Image-URL-S           | 0            |
-| Image-URL-M           | 0            |
-| Image-URL-L           | 3            |
-
-### Jumlah Data Duplikat
-
-| Deskripsi              | Jumlah |
-|------------------------|--------|
-| Duplikasi pada dataset | 0      |
+| Statistic | User-ID       | Location                          | Age        |
+|-----------|---------------|-----------------------------------|------------|
+| count     | 278858.00000  | 278858                            | 168096.000 |
+| unique    | NaN           | 57339                             | NaN        |
+| top       | NaN           | london, england, united kingdom   | NaN        |
+| freq      | NaN           | 2506                              | NaN        |
+| mean      | 139429.50000  | NaN                               | 34.751434  |
+| std       | 80499.51502   | NaN                               | 14.428097  |
+| min       | 1.00000       | NaN                               | 0.000000   |
+| 25%       | 69715.25000   | NaN                               | 24.000000  |
+| 50%       | 139429.50000  | NaN                               | 32.000000  |
+| 75%       | 209143.75000  | NaN                               | 44.000000  |
+| max       | 278858.00000  | NaN                               | 244.000000 |
 
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data beserta insight atau exploratory data analysis.
+#### Jumlah Data Duplikat
+
+Jumlah Dataset Duplikat : 0  
+
+Ditemukan 110762 missing value pada kolom Age 
+
+------------------
+
+
+### Visualisasi distribusi umur pelanggan
+![Visualisasi umur pelanggan]('Graphic_asset/distribusi_umur')
+
+Distribusi data pada kolom Age cenderung *right skew*, dibuktikan dengan nilai skew sebesar 1.178391610309946
+
+### Visualisasi distribusi rating dari pelanggan
+![Visualisasi rating dari pelanggan]('Graphic_asset/distribusi_rating')
+
+Terdapat ketidakseimbangan dalam distribusi nilai , dimana rating 0 berjumlah 700 ribu mendominasi data rating lain. hal tersebut membuat distribusi data menjadi cenderung ke *right skew*, sehingga agar dapat menyeimbangkan nilainya data dari rating 0 perlu dihapus.
+
+
+### tabel top 5 tahun dengan jumlah penerbitan buku terbanyak
+
+| Year-Of-Publication       | count  |
+|---------------------------|--------|
+| 2002	                    | 13903  |  
+| 2001	                    | 13715  |
+| 1999                      | 13414  |
+| 2000	                    | 13373  |
+| 1998	                    | 12116  |
+
+Tahun 2002 menjadi tahun dimana banyak buku yang dipublikasikan , dibuktikan dengan jumlah publikasi terbanyak pada angka 919 buku, disusul dengan tahun 2001  dengan buku yang dipublikasikan sebanyak 8115 buku, tahun 2000 dengan buku yang dipublikasikan sebanyak 787 buku, tahun 2003  dengan buku yang dipublikasikan sebanyak 731, dan tahun 1999 dengan buku yang dipublikasikan sebanyak	728 buku.
+
+
+### tabel top 5 penerbit dengan jumlah penerbitan buku terbanyak
+
+| Publisher	               | count  |
+|--------------------------|--------|
+| Ballantine Books	       |  299   |  
+| Pocket	                 |  256   |
+| Berkley Publishing Group |	235   |
+| Warner Books	           |  206   |
+| Bantam Books	           |  204   |
+
+Ballantine Books merupakan Publisher urutan teratas dalam hal penerbitan buku, terdapat 300 buku yang telah diterbitkan olehnya, di bawahnya adalah Pocket dengan 255 buku yang diterbitkan, dibawahnya lagi ada Berkley Publishing Group dengan 232 buku yang diterbitkan, dibawahnya lagi ada Warner Books dengan 203 buku yang diterbitkan, dan dibawahnya lagi ada Bantams Books dengan 202 buku yang diterbitkan.
+
+
+### Hasil Akhir
+
+1.   Pada file ratings.csv, terdapat total 1149780 baris data dengan 3 kolom data, tidak terdapat missing value dan tidak memiliki data duplikat sehingga tidak dibutuhkan tindakan imputasi nilai maupun penghapusan nilai duplikat.
+
+2.   Pada file books.csv, terdapat total 271360 baris data dengan 8 kolom data, tidak terdapat missing value namun terdapat 7 data duplikat sehingga perlu untuk menghapus data duplikat tersebut.
+
+3.  Pada file users.csv, terdapat total 278858 baris data dengan 3 kolom data, terdapat 110762 missing value pada kolom age namun tidak memiliki data duplikat sehingga diperlukan imputasi data terhadap kolom age menggunakan nilai median dari kolom age dikarenakan distribusi data dari kolom age yang cenderung *right skew* dibuktikan dengan nilai *skewness* sebesar 1.17 yang menandakan bahwa distribusi data cenderung mengalami *skewness*
+
+4. Tahun 2002 menjadi tahun dimana banyak buku yang dipublikasikan , dibuktikan dengan jumlah publikasi terbanyak pada angka 919 buku, disusul dengan tahun 2001  dengan buku yang dipublikasikan sebanyak 8115 buku, tahun 2000 dengan buku yang dipublikasikan sebanyak 787 buku, tahun 2003  dengan buku yang dipublikasikan sebanyak 731, dan tahun 1999 dengan buku yang dipublikasikan sebanyak	728 buku.
+
+5. Ballantine Books merupakan Publisher urutan teratas dalam hal penerbitan buku, terdapat 300 buku yang telah diterbitkan olehnya, di bawahnya adalah Pocket dengan 255 buku yang diterbitkan, dibawahnya lagi ada Berkley Publishing Group dengan 232 buku yang diterbitkan, dibawahnya lagi ada Warner Books dengan 203 buku yang diterbitkan, dan dibawahnya lagi ada Bantams Books dengan 202 buku yang diterbitkan.
+
+
 
 ## Data Preparation
 Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.

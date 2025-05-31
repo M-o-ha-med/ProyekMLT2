@@ -517,7 +517,7 @@ model2 = LightFM(loss='warp-kos')
 ---
 #### Top-5 Recommendation Output
 
-> Output yang diberikan dibawah merupakan rekomendasi yang diberikan oleh sistem untuk pelanggan dengan user_id = 730
+**Output yang diberikan dibawah merupakan rekomendasi yang diberikan oleh sistem untuk pelanggan dengan user_id = 730**
 
 > Correlative filtering model
 

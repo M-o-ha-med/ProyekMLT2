@@ -231,7 +231,8 @@ $$\hat{r}_{u,i} = \mathbf{p}_u^\top \mathbf{q}_i + b_u + b_i$$
 
 Loss function WARP-KOS (Weighted Approximate-Rank Pairwise - k-Order Statistic):
 
-$$\mathcal{L} = - \sum_{(u, i, j)} \log \sigma(\hat{r}_{u,i} - \hat{r}_{u,j})$$
+$\mathcal{L} = - \sum_{(u, i, j)} \log \sigma(\hat{r}_{u,i} - \hat{r}_{u,j})$
+
 
 **Keterangan:**
 
@@ -274,7 +275,8 @@ $$ \hat{r}_{u,i} = \mathbf{p}_u^\top \mathbf{q}_i + b_u + b_i $$
 
 Loss function WARP-KOS (Weighted Approximate-Rank Pairwise - k-Order Statistic):
 
-$$ \mathcal{L} = - \sum_{(u, i, j)} \log \sigma(\hat{r}_{u,i} - \hat{r}_{u,j}) $$
+$\mathcal{L} = - \sum_{(u, i, j)} \log \sigma(\hat{r}_{u,i} - \hat{r}_{u,j})$
+
 
 **Keterangan:**
 

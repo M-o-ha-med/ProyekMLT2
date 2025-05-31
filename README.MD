@@ -231,12 +231,12 @@ Ditemukan 110762 missing value pada kolom Age
 
 
 ### Visualisasi distribusi umur pelanggan
-![Visualisasi umur pelanggan]('Graphic_asset/distribusi_umur')
+![Visualisasi umur pelanggan]('Graphic_asset/distribusi_umur.png')
 
 Distribusi data pada kolom Age cenderung *right skew*, dibuktikan dengan nilai skew sebesar 1.178391610309946
 
 ### Visualisasi distribusi rating dari pelanggan
-![Visualisasi rating dari pelanggan]('Graphic_asset/distribusi_rating')
+![Visualisasi rating dari pelanggan]('Graphic_asset/distribusi_rating.png')
 
 Terdapat ketidakseimbangan dalam distribusi nilai , dimana rating 0 berjumlah 700 ribu mendominasi data rating lain. hal tersebut membuat distribusi data menjadi cenderung ke *right skew*, sehingga agar dapat menyeimbangkan nilainya data dari rating 0 perlu dihapus.
 

@@ -303,26 +303,31 @@ WARP-KOS bekerja dengan men-sampling item negatif $j$ hingga ditemukan satu yang
 * Rentan terhadap overspecialization jika fitur terlalu terbatas
 
 ---
-#### Top-N Recommendation Output
+#### Top-5 Recommendation Output
 
-Contoh hasil top-5 rekomendasi untuk pengguna:
+> Correlative filtering model
+|index|ISBN|Book-Title|Book-Author|Year-Of-Publication|Publisher|
+|---|---|---|---|---|---|
+|19|0452264464|Beloved \(Plume Contemporary Fiction\)|Toni Morrison|1994|Plume|
+|101|0446677450|Rich Dad, Poor Dad: What the Rich Teach Their Kids About Money--That the Poor and Middle Class Do Not\!|Robert T\. Kiyosaki|2000|Warner Books|
+|4729|068480087X|POSTCARDS|Annie Proulx|1994|Scribner|
+|5027|0060086246|Last Chance Saloon|Marian Keyes|2003|Perennial|
+|6145|0140181903|The Custom of the Country \(Penguin Twentieth-Century Classics\)|Edith Wharton|1990|Penguin Books|
 
-1. "Angels and Demons" by Dan Brown
-2. "The Da Vinci Code" by Dan Brown
-3. "Digital Fortress"
-4. "Deception Point"
-5. "Inferno"
+> Content-based filtering model
+|index|ISBN|Book-Title|Book-Author|Year-Of-Publication|Publisher|
+|---|---|---|---|---|---|
+|1495|0451523067|Emma|Jane Austen|1994|New Amer Library Classics|
+|1574|0060929596|As Nature Made Him : The Boy Who Was Raised as a Girl|John Colapinto|2001|Perennial|
+|3011|0811816583|New York Dogs|Andrea Mohin|1997|Chronicle Books Llc|
+|4971|034545071X|Distant Shores|KRISTIN HANNAH|2002|Ballantine Books|
+|6297|0373291108|Lady Of The Keep \(Harlequin Historical\)|Sharon Schulze|2000|Harlequin|
 
 #### Tentang WARP-KOS
 
 WARP-KOS merupakan loss function yang dirancang untuk memaksimalkan ranking item yang relevan. Loss ini bekerja dengan memilih item negatif secara acak hingga ditemukan satu yang lebih tinggi skornya daripada item positif, dan menghitung loss berdasarkan estimasi ranking tersebut. Loss ini sangat efisien untuk skenario top-N recommendation dan ranking-based learning.
 
 ---
-
-#### Kesimpulan
-
-Kedua model menggunakan algoritma yang sama yaitu LightFM dengan WARP-KOS, namun dengan pendekatan fitur yang berbeda. Model pertama (Collaborative) unggul dari segi precision, sementara model kedua (Content-Based) unggul dari sisi recall. Pemilihan model dapat disesuaikan dengan tujuan sistem rekomendasi, dan kombinasi dari keduanya bisa dipertimbangkan untuk meningkatkan performa sistem.
-
 
 ### Evaluation
 
@@ -350,14 +355,47 @@ $$\text{Recall@K} = \frac{|\text{Recommended items} \cap \text{Relevant items}|}
 
 #### Hasil Evaluasi
 
+> K = 2
+
 | Model                                        | Precision\@K     | Recall\@K             |
 | -------------------------------------------- |------------------|-----------------------|
-| Collaborative Filtering (LightFM + WARP-KOS) | 0.24222705       | 0.9596145774803346    |
-| Content-Based Filtering (LightFM + WARP-KOS) | 0.2263196        | 0.9290151944489016    |
+| Collaborative Filtering (LightFM + WARP-KOS) | 0.57448375       | 0.7011765680207664    |
+| Content-Based Filtering (LightFM + WARP-KOS) | 0.40929204       | 0.5224445107058425    |
 
-#### Interpretasi
+> K = 5
 
-* Collaborative Filtering memberikan precision lebih tinggi, yang menunjukkan bahwa model ini memberikan lebih banyak rekomendasi yang relevan dalam daftar teratas.
-* Content-Based Filtering memiliki recall yang lebih tinggi, menunjukkan cakupan yang lebih luas terhadap item relevan.
-* Kedua pendekatan saling melengkapi dan bisa digabungkan untuk pendekatan hybrid.
+| Model                                        | Precision\@K     | Recall\@K             |
+| -------------------------------------------- |------------------|-----------------------|
+| Collaborative Filtering (LightFM + WARP-KOS) | 0.38982305       | 0.9168525179168349    |
+| Content-Based Filtering (LightFM + WARP-KOS) | 0.31106195       | 0.7963030714264894    |
+
+> K = 10
+
+| Model                                        | Precision\@K     | Recall\@K             |
+| -------------------------------------------- |------------------|-----------------------|
+| Collaborative Filtering (LightFM + WARP-KOS) | 0.24321535       | 0.9602789827849669    |
+| Content-Based Filtering (LightFM + WARP-KOS) | 0.21799408       | 0.914914543738712     |
+
+---------------
+
+### Apakah sudah menjawab setiap problem statement?
+
+Setiap pertannyaan pada problem statement telah terjawab, jika dilihat dari tabel hasil evaluasi dapat dinilai bahwa pendekatan menggunakan teknik collaborative filtering lebih unggul secara keseluruhan
+pada saat k=2, k=5, dan k=10 jika dibandingkan dengan teknik content-based filtering. metrik yang digunakan untuk mengukur hasil evaluasi adalah Precision\@K dan Recall\@K. 
+model sistem rekomendasi dengan teknik content-based filtering memiliki beberapa kelebihan , yaitu unggul dalam memberikan rekomendasi untuk item baru , tidak bergantung kepada iteraksi antar pengguna.
+Namun sangat tergantung oleh fitur dan kualitas dari datanya yang memnyebabkan rentan terhadap overspecialization. Di sisi lain model sistem rekomendasi dengan teknik correlative filtering tidak bergantung kepada fitur dari data serta 
+dan cocok apabila berfokus pada peningkatan rangking kepada item yang relevan namun kurang apabila ada user baru atau item baru serta sangat bergantung kepada data atau interaksi historis dari pelanggan.
+
+
+###Apakah berhasil mencapai setiap goals yang diharapkan?
+
+Semua poin dari goals atau tujuan sudah terpenuhi dengan baik dan hasilnya dapat dilihat pada laporan di dalam tahap modeling dan evaluation.
+
+###Apakah setiap solusi statement yang kamu rencanakan berdampak? Jelaskan!
+
+Sangat membantu dan berdampak. pembuatan model sistem rekomendasi menggunakan dua teknik yang berbeda yaitu collaborative filterin dan content-based filtering dapat 
+dijadikan sebagai pertimbangan untuk menerapkan model berdasarkan kasus-kasus yang berbeda, efektivitas dari model dipengaruhi oleh beberapa faktor dan setiap model memiliki 
+kelebihan serta kekurangannya masing-masing. pengukuran efektivitas model menggunakan metrik pengukuran seperti precision@k dan recall@k memungkinkan dalam menentukan performa dari model namun 
+tidak mencerminkan efektivitas dari model secara gamblang walaupun model sistem rekomendasi menggunakan teknik collaborative filtering terlihat lebih baik dibandingkan dengan 
+sistem rekomendasi menggunakan teknik content-based filtering jika diukur menggunakan metrik precision@k dan recall@k. 
 

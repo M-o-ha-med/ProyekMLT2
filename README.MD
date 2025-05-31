@@ -34,12 +34,12 @@ penelitian terdahulu menunjukkan bahwa penerapan sistem rekomendasi untuk penjua
 
 ### Goals
 - Untuk membuat sistem rekomendasi berdasarkan pendekatan collaborative filtering dan content-based filtering.
-- Untuk mencari sistem rekomendasi terbaik berdasarkan pengukuran performa menggunakan metrik precision@k, recall@k dan precision.
+- Untuk mencari sistem rekomendasi terbaik berdasarkan pengukuran performa menggunakan metrik precision@k dan recall@k.
 - Untuk mengetahui kekurangan dan kelebihan dari sistem rekomendasi berdasarkan pendekatan collaborative filtering dan content-based filtering.
 
 ### Solution statements
-- Membuat dua model sistem rekomendasi menggunakan LightFM
-- Membandingkan efektivitas kedua model menggunakan metrik pengukuran seperti precision@k, recall@k , dan precision.
+- Membuat dua model sistem rekomendasi menggunakan LightFM.
+- Membandingkan efektivitas kedua model menggunakan metrik pengukuran seperti precision@k dan recall@k.
 - Melakukan evaluasi berdasarkan hasil pengukuran metrik untuk menentukan kelebihan serta kekurangan dari kedua model.
 
 ## Data Understanding

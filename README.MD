@@ -306,6 +306,7 @@ WARP-KOS bekerja dengan men-sampling item negatif $j$ hingga ditemukan satu yang
 #### Top-5 Recommendation Output
 
 > Correlative filtering model
+
 |index|ISBN|Book-Title|Book-Author|Year-Of-Publication|Publisher|
 |---|---|---|---|---|---|
 |19|0452264464|Beloved \(Plume Contemporary Fiction\)|Toni Morrison|1994|Plume|
@@ -315,6 +316,7 @@ WARP-KOS bekerja dengan men-sampling item negatif $j$ hingga ditemukan satu yang
 |6145|0140181903|The Custom of the Country \(Penguin Twentieth-Century Classics\)|Edith Wharton|1990|Penguin Books|
 
 > Content-based filtering model
+
 |index|ISBN|Book-Title|Book-Author|Year-Of-Publication|Publisher|
 |---|---|---|---|---|---|
 |1495|0451523067|Emma|Jane Austen|1994|New Amer Library Classics|
@@ -387,11 +389,11 @@ Namun sangat tergantung oleh fitur dan kualitas dari datanya yang memnyebabkan r
 dan cocok apabila berfokus pada peningkatan rangking kepada item yang relevan namun kurang apabila ada user baru atau item baru serta sangat bergantung kepada data atau interaksi historis dari pelanggan.
 
 
-###Apakah berhasil mencapai setiap goals yang diharapkan?
+### Apakah berhasil mencapai setiap goals yang diharapkan?
 
 Semua poin dari goals atau tujuan sudah terpenuhi dengan baik dan hasilnya dapat dilihat pada laporan di dalam tahap modeling dan evaluation.
 
-###Apakah setiap solusi statement yang kamu rencanakan berdampak? Jelaskan!
+### Apakah setiap solusi statement yang kamu rencanakan berdampak? Jelaskan!
 
 Sangat membantu dan berdampak. pembuatan model sistem rekomendasi menggunakan dua teknik yang berbeda yaitu collaborative filterin dan content-based filtering dapat 
 dijadikan sebagai pertimbangan untuk menerapkan model berdasarkan kasus-kasus yang berbeda, efektivitas dari model dipengaruhi oleh beberapa faktor dan setiap model memiliki 

@@ -436,8 +436,6 @@ model1 = LightFM(loss='warp-kos')
 %time model1.fit(interactions_1, epochs=150 , num_threads=4)
 ```
 
-Berikut penjelasan setiap parameter dalam satu kalimat:
-
 * `loss='warp-kos'`: Mengatur fungsi loss ke **WARP-kos** yang memperhitungkan popularitas item untuk optimasi ranking.
 * `interactions_2` : adalah matriks yang menunjukkan interaksi antara pengguna dan item.
 * `epochs=150`: Menentukan jumlah **iterasi pelatihan sebanyak 150 kali** terhadap seluruh dataset.

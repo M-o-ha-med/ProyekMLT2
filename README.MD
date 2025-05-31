@@ -260,7 +260,7 @@ WARP-KOS bekerja dengan men-sampling item negatif $j$ hingga ditemukan satu yang
 
 Model ini juga menggunakan LightFM dengan WARP-KOS, namun ditambahkan fitur konten dari item seperti judul, penulis, atau kategori buku. Fitur-fitur ini digunakan untuk membuat representasi tambahan item sehingga memungkinkan sistem merekomendasikan buku berdasarkan kemiripan konten.
 
-$$\hat{r}_{u,i} = \mathbf{p}_u^\top \mathbf{q}_i + b_u + b_i$$
+$$ \hat{r}_{u,i} = \mathbf{p}_u^\top \mathbf{q}_i + b_u + b_i $$
 
 **Keterangan:**
 
@@ -274,7 +274,7 @@ $$\hat{r}_{u,i} = \mathbf{p}_u^\top \mathbf{q}_i + b_u + b_i$$
 
 Loss function WARP-KOS (Weighted Approximate-Rank Pairwise - k-Order Statistic):
 
-$$\mathcal{L} = - \sum_{(u, i, j)} \log \sigma(\hat{r}_{u,i} - \hat{r}_{u,j})$$
+$$ \mathcal{L} = - \sum_{(u, i, j)} \log \sigma(\hat{r}_{u,i} - \hat{r}_{u,j}) $$
 
 **Keterangan:**
 

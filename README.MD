@@ -428,6 +428,22 @@ WARP-KOS bekerja dengan men-sampling item negatif $j$ hingga ditemukan satu yang
 * Tidak dapat menangani cold-start item atau user baru
 * Bergantung pada interaksi historis yang cukup untuk performa optimal
 
+
+#### sintaks
+
+```python
+model1 = LightFM(loss='warp-kos')
+%time model1.fit(interactions_1, epochs=150 , num_threads=4)
+```
+
+Berikut penjelasan setiap parameter dalam satu kalimat:
+
+* `loss='warp-kos'`: Mengatur fungsi loss ke **WARP-kos** yang memperhitungkan popularitas item untuk optimasi ranking.
+* `interactions_2` : adalah matriks yang menunjukkan interaksi antara pengguna dan item.
+* `epochs=150`: Menentukan jumlah **iterasi pelatihan sebanyak 150 kali** terhadap seluruh dataset.
+* `num_threads=4`: Menentukan jumlah **thread paralel sebanyak 4** untuk mempercepat proses pelatihan.
+
+
 ---
 
 ### Content-Based Filtering (LightFM + WARP-KOS)
@@ -473,6 +489,20 @@ WARP-KOS bekerja dengan men-sampling item negatif $j$ hingga ditemukan satu yang
 
 * Bergantung pada kualitas dan kelengkapan data konten
 * Rentan terhadap overspecialization jika fitur terlalu terbatas
+
+#### sintaks
+
+```python
+model2 = LightFM(loss='warp-kos')
+%time model2.fit(interactions_2, epochs=150 , num_threads=4, item_features=encoded_df)
+```
+
+* `loss='warp-kos'`: Mengatur fungsi loss ke **WARP-kos** yang memperhitungkan popularitas item untuk optimasi ranking.
+* `interactions_2` : adalah matriks yang menunjukkan interaksi antara pengguna dan item.
+* `epochs=150`: Menentukan jumlah **iterasi pelatihan sebanyak 150 kali** terhadap seluruh dataset.
+* `num_threads=4`: Menentukan jumlah **thread paralel sebanyak 4** untuk mempercepat proses pelatihan.
+* `item_features=encoded_df`: Menyediakan **fitur tambahan dari item** yang sudah di-encode dalam `encoded_df` untuk digunakan dalam pelatihan model.
+
 
 ---
 #### Top-5 Recommendation Output

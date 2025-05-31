@@ -33,7 +33,7 @@ penelitian terdahulu menunjukkan bahwa penerapan sistem rekomendasi untuk penjua
 - apa saja kekurangan dan kelebihan dari sistem rekomendasi berdasarkan pendekatan collaborative filtering dan content-based filtering ? 
 
 ### Goals
-- Untuk membuat sistem rekomendasi berdasarkan pendekatan collaborative filtering dan content-based filtering.
+- Untuk membuat sistem rekomendasi berdasarkan teknik collaborative filtering dan content-based filtering.
 - Untuk mencari sistem rekomendasi terbaik berdasarkan pengukuran performa menggunakan metrik precision@k dan recall@k.
 - Untuk mengetahui kekurangan dan kelebihan dari sistem rekomendasi berdasarkan pendekatan collaborative filtering dan content-based filtering.
 
@@ -233,13 +233,20 @@ Ditemukan 110762 missing value pada kolom Age
 ### Visualisasi distribusi umur pelanggan
 ![Visualisasi umur pelanggan](Graphic_asset/distribusi_umur.png)
 
+```python
+users_df['Age'].skew()
+```
+
 Distribusi data pada kolom Age cenderung *right skew*, dibuktikan dengan nilai skew sebesar 1.178391610309946
 
 ### Visualisasi distribusi rating dari pelanggan
 ![Visualisasi rating dari pelanggan](Graphic_asset/distribusi_rating.png)
 
-Terdapat ketidakseimbangan dalam distribusi nilai , dimana rating 0 berjumlah 700 ribu mendominasi data rating lain. hal tersebut membuat distribusi data menjadi cenderung ke *right skew*, sehingga agar dapat menyeimbangkan nilainya data dari rating 0 perlu dihapus.
+```python
+ratings_df['Book-Rating'].skew()
+```
 
+Terdapat ketidakseimbangan dalam distribusi nilai , dimana rating 0 berjumlah 700 ribu mendominasi data rating lain. hal tersebut membuat distribusi data menjadi cenderung ke *right skew* dibuktikan dengan nilai skewness sebesar 0.733641207848559, sehingga agar dapat menyeimbangkan nilainya data dari rating 0 perlu dihapus.
 
 ### tabel top 5 tahun dengan jumlah penerbitan buku terbanyak
 
@@ -273,11 +280,16 @@ Ballantine Books merupakan Publisher urutan teratas dalam hal penerbitan buku, t
 
 2.   Pada file books.csv, terdapat total 271360 baris data dengan 8 kolom data, tidak terdapat missing value namun terdapat 7 data duplikat sehingga perlu untuk menghapus data duplikat tersebut.
 
-3.  Pada file users.csv, terdapat total 278858 baris data dengan 3 kolom data, terdapat 110762 missing value pada kolom age namun tidak memiliki data duplikat sehingga diperlukan imputasi data terhadap kolom age menggunakan nilai median dari kolom age dikarenakan distribusi data dari kolom age yang cenderung *right skew* dibuktikan dengan nilai *skewness* sebesar 1.17 yang menandakan bahwa distribusi data cenderung mengalami *skewness*
+3.   Distribusi data pada kolom Age cenderung *right skew*, dibuktikan dengan nilai skew sebesar 1.178391610309946. ditemukan sebanyak 110762 missing value dari kolom Age sehingga dibutuhkan imputasi data menggunakan nilai median hal ini merujuk kepada distribusi data
+dari kolom Age itu sendiri.
 
-4. Tahun 2002 menjadi tahun dimana banyak buku yang dipublikasikan , dibuktikan dengan jumlah publikasi terbanyak pada angka 919 buku, disusul dengan tahun 2001  dengan buku yang dipublikasikan sebanyak 8115 buku, tahun 2000 dengan buku yang dipublikasikan sebanyak 787 buku, tahun 2003  dengan buku yang dipublikasikan sebanyak 731, dan tahun 1999 dengan buku yang dipublikasikan sebanyak	728 buku.
+4. Distribusi data pada kolom Book-Rating cenderung lebih ke arah kanan atau positive-skew dibuktikan dengan nilai skewness sebesar 0.733641207848559, hal ini dikarenakan ketidakseimbangan nilai pada rating 0 yang berjumlah 700.000 sedangkan rating 1 hingga 10 berada di bawah rentang tersebut. hal yang perlu dilakukan adalah dengan menghapus data rating 0 dari kolom Book-Rating agar mengatasi kejomplangan dalam jumlah data.
 
-5. Ballantine Books merupakan Publisher urutan teratas dalam hal penerbitan buku, terdapat 300 buku yang telah diterbitkan olehnya, di bawahnya adalah Pocket dengan 255 buku yang diterbitkan, dibawahnya lagi ada Berkley Publishing Group dengan 232 buku yang diterbitkan, dibawahnya lagi ada Warner Books dengan 203 buku yang diterbitkan, dan dibawahnya lagi ada Bantams Books dengan 202 buku yang diterbitkan.
+5.  Pada file users.csv, terdapat total 278858 baris data dengan 3 kolom data, terdapat 110762 missing value pada kolom age namun tidak memiliki data duplikat sehingga diperlukan imputasi data terhadap kolom age menggunakan nilai median dari kolom age dikarenakan distribusi data dari kolom age yang cenderung *right skew* dibuktikan dengan nilai *skewness* sebesar 1.17 yang menandakan bahwa distribusi data cenderung mengalami *skewness*
+
+6. Tahun 2002 menjadi tahun dimana banyak buku yang dipublikasikan , dibuktikan dengan jumlah publikasi terbanyak pada angka 919 buku, disusul dengan tahun 2001  dengan buku yang dipublikasikan sebanyak 8115 buku, tahun 2000 dengan buku yang dipublikasikan sebanyak 787 buku, tahun 2003  dengan buku yang dipublikasikan sebanyak 731, dan tahun 1999 dengan buku yang dipublikasikan sebanyak	728 buku.
+
+7. Ballantine Books merupakan Publisher urutan teratas dalam hal penerbitan buku, terdapat 300 buku yang telah diterbitkan olehnya, di bawahnya adalah Pocket dengan 255 buku yang diterbitkan, dibawahnya lagi ada Berkley Publishing Group dengan 232 buku yang diterbitkan, dibawahnya lagi ada Warner Books dengan 203 buku yang diterbitkan, dan dibawahnya lagi ada Bantams Books dengan 202 buku yang diterbitkan.
 
 
 
@@ -373,8 +385,8 @@ fitting pada dataset2 menggunakan data pada kolom User-ID dan ISBN dan fit_parti
 
 ### Hasil Akhir
 
-1.   Berhasil menghapus data anomali berupa tahun ke 0 dari DataFrame books_df pada kolom Year-Of-Publication
-2.  Imputasi data pada kolom age menggunakan nilai median dilakukan dikarenakan distribusi data dari kolom age yang cenderung *right skew* 
+1. Berhasil menghapus data anomali berupa tahun ke 0 dari DataFrame books_df pada kolom Year-Of-Publication
+2. Imputasi data pada kolom age menggunakan nilai median dilakukan dikarenakan distribusi data dari kolom age yang cenderung *right skew* 
 3. Penghapusan dari nilai duplikat dalam DataFrame books_df dilakukan dikarenakan jumlah data duplikat yang sedikit dan tidak berpengaruh secara signifikan bilamana dihapus serta membuat data menjadi lebih bersih dan siap untuk dijadikan data latih untuk model.
 4. Penghapusan kolom 'Image-URL-S' , 'Image-URL-M' , 'Image-URL-L' dilakukan dikarenakan ketiga kolom tersebut tidak dibutuhkan dan tidak digunakan dalam melatih model.
 5. Menyaring data dari DataFrame ratings_df pada kolom Book-Rating untuk mengambil rating sama dengan atau lebih dari 1 untuk menghindari noise pada data latih dan menghindari distorsi pada model.
@@ -505,6 +517,8 @@ model2 = LightFM(loss='warp-kos')
 ---
 #### Top-5 Recommendation Output
 
+> Output yang diberikan dibawah merupakan rekomendasi yang diberikan oleh sistem untuk pelanggan dengan user_id = 730
+
 > Correlative filtering model
 
 |index|ISBN|Book-Title|Book-Author|Year-Of-Publication|Publisher|
@@ -591,7 +605,8 @@ dan cocok apabila berfokus pada peningkatan rangking kepada item yang relevan na
 
 ### Apakah berhasil mencapai setiap goals yang diharapkan?
 
-Semua poin dari goals atau tujuan sudah terpenuhi dengan baik dan hasilnya dapat dilihat pada laporan di dalam tahap modeling dan evaluation.
+
+Semua poin dari goals atau tujuan sudah terpenuhi dengan baik. Model sistem rekomendasi berbasis teknik collaborative filtering dan content-based filtering berhasil dibuat menggunakan library LightFM dan diukur menggunakan metrik precision@K dan recall@K serta berdasarkan hasil evaluasi diketahuilah kelebihan serta kekurangan dari masing-masing model.
 
 ### Apakah setiap solusi statement yang kamu rencanakan berdampak? Jelaskan!
 

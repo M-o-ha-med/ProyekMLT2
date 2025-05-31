@@ -282,11 +282,108 @@ Ballantine Books merupakan Publisher urutan teratas dalam hal penerbitan buku, t
 
 
 ## Data Preparation
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+### Menghapus data anomali pada kolom Year-of-Publication dalam DataFrame books_df berupa tahun ke-0 
+```python
+books_df = books_df[books_df['Year-Of-Publication'] != 0]
+```
+Berhasil menghapus data anomali berupa tahun ke 0 dari DataFrame books_df pada kolom Year-Of-Publication
+
+### Melakukan imputasi data pada kolom Age dengan nilai median
+```python
+users_df.fillna(users_df['Age'].median() , inplace=True)
+```
+Imputasi data pada kolom age menggunakan nilai median dilakukan dikarenakan distribusi data dari kolom age yang cenderung *right skew* 
+
+### Menghapus nilai duplikat dari DataFrame books_df
+```python
+books_df.drop_duplicates(inplace=True)
+```
+Penghapusan dari nilai duplikat dalam DataFrame books_df dilakukan dikarenakan jumlah data duplikat yang sedikit dan tidak berpengaruh secara signifikan bilamana dihapus serta membuat data menjadi lebih bersih dan siap untuk dijadikan data latih untuk model.
+
+### Menghapus kolom yang tidak diperlukan pada DataFrame books_df
+```python
+books_df.drop(['Image-URL-S' , 'Image-URL-M' , 'Image-URL-L'], inplace=True , axis=1)
+```
+Penghapusan kolom 'Image-URL-S' , 'Image-URL-M' , 'Image-URL-L' dilakukan dikarenakan ketiga kolom tersebut tidak dibutuhkan dan tidak digunakan dalam melatih model.
+
+### Menyaring data dari kolom Book-Rating
+```python
+ratings_df = ratings_df[ratings_df['Book-Rating'] >= 1]
+```
+Menyaring data dari DataFrame ratings_df pada kolom Book-Rating untuk mengambil rating sama dengan atau lebih dari 1 untuk menghindari noise pada data latih dan menghindari distorsi pada model.
+
+
+### Melakukan sampling data sebanyak 10001 untuk masing-masing DataFame
+```python
+users_df = users_df[:10001]
+books_df = books_df[:10001]
+ratings_df = ratings_df[:10001]
+```
+Pembatasan data hingga 10001 pada setiap DataFrame dilakukan untuk mempercepat proses pelatihan model  serta menghemat sumber daya.
+
+
+### Merging DataFrame ratings_df , users_df , dan books_df
+```python
+merged_df = pd.merge(ratings_df , users_df , on='User-ID')
+merged_df = pd.merge(merged_df , books_df , on='ISBN')
+
+merged_df.head()
+```
+Merge data ini dilakukan biar semua info penting—rating, data user, dan detail buku—nyatu di satu DataFrame. Jadi, model bisa belajar pola dari hubungan antar user dan buku secara lebih lengkap, cocok buat sistem rekomendasi, baik collaborative maupun content-based.
+
+### Melakukan proses encoding menggunakan OneHotEncoder() pada DataFrame merged_df pada kolom [ 'Book-Title', 'Book-Author', 'Year-Of-Publication', 'Publisher']
+```python
+items_df = merged_df[['Book-Title', 'Book-Author', 'Year-Of-Publication', 'Publisher']] 
+encoder = OneHotEncoder()
+encoded_df = encoder.fit_transform(items_df)
+```
+Proses encoding data pada merged_df dilakukan agar dapat memudahkan model dalam menemukan pola tersembunyi pada data serta mempercepat konvergensi model
+
+### Menyiapkan data latih untuk model sistem rekomendasi dengan teknik Collaborative Filtering
+```python
+dataset1 = Dataset()
+dataset1.fit(merged_df['User-ID'] , merged_df['ISBN'])
+
+(interactions_1, weights_1) = dataset1.build_interactions([(row['User-ID'], row['ISBN'], row['Book-Rating']) for _, row in merged_df.iterrows()])
+```
+fitting pada dataset1 menggunakan data pada kolom User-ID dan ISBN dilakukan untuk membuat dataset yang nantinya akan digunakan dalam proses pelatihan pada model sistem rekomendasi collaborative filtering
+
+### Menyiapkan data latih untuk model sistem rekomendasi dengan teknik Content-Based Filtering
+```python
+item_features_list = [
+    (row['ISBN'],[row['Book-Title'] , row['Book-Author'], row['Year-Of-Publication'], row['Publisher']])
+    for _, row in merged_df.iterrows()
+]
+
+dataset2 = Dataset()
+all_features = pd.unique(
+    merged_df[['Book-Title', 'Book-Author', 'Year-Of-Publication', 'Publisher']]
+    .values
+    .ravel()
+)
+dataset2.fit(merged_df['User-ID'] , merged_df['ISBN'])
+dataset2.fit_partial(items=merged_df['ISBN'] , item_features =  all_features)
+
+item_features = dataset2.build_item_features(item_features_list)
+
+(interactions_2, weights_2) = dataset2.build_interactions([(row['User-ID'], row['ISBN'], row['Book-Rating']) for _, row in merged_df.iterrows()])
+```
+fitting pada dataset2 menggunakan data pada kolom User-ID dan ISBN dan fit_partial pada dataset2 menggunakan data buku melalui perantara kolom ISBN dilakukan untuk membuat dataset yang nantinya akan digunakan dalam proses pelatihan pada model sistem rekomendasi content-based filtering
+
+### Hasil Akhir
+
+1.   Berhasil menghapus data anomali berupa tahun ke 0 dari DataFrame books_df pada kolom Year-Of-Publication
+2.  Imputasi data pada kolom age menggunakan nilai median dilakukan dikarenakan distribusi data dari kolom age yang cenderung *right skew* 
+3. Penghapusan dari nilai duplikat dalam DataFrame books_df dilakukan dikarenakan jumlah data duplikat yang sedikit dan tidak berpengaruh secara signifikan bilamana dihapus serta membuat data menjadi lebih bersih dan siap untuk dijadikan data latih untuk model.
+4. Penghapusan kolom 'Image-URL-S' , 'Image-URL-M' , 'Image-URL-L' dilakukan dikarenakan ketiga kolom tersebut tidak dibutuhkan dan tidak digunakan dalam melatih model.
+5. Menyaring data dari DataFrame ratings_df pada kolom Book-Rating untuk mengambil rating sama dengan atau lebih dari 1 untuk menghindari noise pada data latih dan menghindari distorsi pada model.
+6. Pembatasan data hingga 10001 pada setiap DataFrame dilakukan untuk mempercepat proses pelatihan model  serta menghemat sumber daya.
+7. Merge data ini dilakukan biar semua info penting—rating, data user, dan detail buku—nyatu di satu DataFrame. Jadi, model bisa belajar pola dari hubungan antar user dan buku secara lebih lengkap, cocok buat sistem rekomendasi, baik collaborative maupun content-based.
+8. Proses encoding data pada merged_df dilakukan agar dapat memudahkan model dalam menemukan pola tersembunyi pada data serta mempercepat konvergensi model
+9. fitting pada dataset1 menggunakan data pada kolom User-ID dan ISBN dilakukan untuk membuat dataset yang nantinya akan digunakan dalam proses pelatihan pada model sistem rekomendasi collaborative filtering
+10. fitting pada dataset2 menggunakan data pada kolom User-ID dan ISBN dan fit_partial pada dataset2 menggunakan data buku melalui perantara kolom ISBN dilakukan untuk membuat dataset yang nantinya akan digunakan dalam proses pelatihan pada model sistem rekomendasi content-based filtering
+
 
 ## Modeling
 ### Collaborative Filtering (LightFM + WARP-KOS)

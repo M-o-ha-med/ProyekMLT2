@@ -80,7 +80,7 @@ Dataset yang digunakan dalam proyek kali ini berasal dari kaggle, yaitu [Book Re
     ```
 
 #### 2. Users.csv
-- Jumlah baris : 340556 sampel data
+- Jumlah baris : 278858 sampel data
 - Jumlah kolom : 3 kolom 
 - Kondisi data : 
   - Jumlah missing value : 110762
@@ -524,20 +524,20 @@ model2 = LightFM(loss='warp-kos')
 |index|ISBN|Book-Title|Book-Author|Year-Of-Publication|Publisher|
 |---|---|---|---|---|---|
 |19|0452264464|Beloved \(Plume Contemporary Fiction\)|Toni Morrison|1994|Plume|
-|101|0446677450|Rich Dad, Poor Dad: What the Rich Teach Their Kids About Money--That the Poor and Middle Class Do Not\!|Robert T\. Kiyosaki|2000|Warner Books|
+|748|0385504209|The Da Vinci Code|Dan Brown|2003|Doubleday|
+|3225|3596122279|Das Superwieb|Hera Lind|2002|Distribooks Inc|
+|3405|8806134817|Quel Che Resta Del Giorno|Kazuo Ishiguro|1998|Einaudi|
 |4729|068480087X|POSTCARDS|Annie Proulx|1994|Scribner|
-|5027|0060086246|Last Chance Saloon|Marian Keyes|2003|Perennial|
-|6145|0140181903|The Custom of the Country \(Penguin Twentieth-Century Classics\)|Edith Wharton|1990|Penguin Books|
 
 > Content-based filtering model
 
 |index|ISBN|Book-Title|Book-Author|Year-Of-Publication|Publisher|
 |---|---|---|---|---|---|
-|1495|0451523067|Emma|Jane Austen|1994|New Amer Library Classics|
-|1574|0060929596|As Nature Made Him : The Boy Who Was Raised as a Girl|John Colapinto|2001|Perennial|
-|3011|0811816583|New York Dogs|Andrea Mohin|1997|Chronicle Books Llc|
-|4971|034545071X|Distant Shores|KRISTIN HANNAH|2002|Ballantine Books|
-|6297|0373291108|Lady Of The Keep \(Harlequin Historical\)|Sharon Schulze|2000|Harlequin|
+|132|0451205197|Lady in Green/Minor Indiscretions \(Signet Regency Romance\)|Barbara Metzger|2002|Signet Book|
+|2655|0590629808|The Message \(Animorphs , No 4\)|K\. A\. Applegate|1996|Scholastic|
+|3239|059042761X|Wednesday Witch|Ruth Chew|1969|Scholastic Paperbacks \(Mm\)|
+|4464|0571097103|Whitsun Weddings|Philip Larkin|1964|Faber &amp; Faber|
+|5403|0812553993|Lion of Ireland \(Celtic World of Morgan Llywelyn\)|Morgan Llywelyn|1996|Tor Books|
 
 #### Tentang WARP-KOS
 
@@ -575,22 +575,22 @@ $$\text{Recall@K} = \frac{|\text{Recommended items} \cap \text{Relevant items}|}
 
 | Model                                        | Precision\@K     | Recall\@K             |
 | -------------------------------------------- |------------------|-----------------------|
-| Collaborative Filtering (LightFM + WARP-KOS) | 0.57448375       | 0.7011765680207664    |
-| Content-Based Filtering (LightFM + WARP-KOS) | 0.40929204       | 0.5224445107058425    |
+| Collaborative Filtering (LightFM + WARP-KOS) | 0.58480823       | 0.7196675551073691    |
+| Content-Based Filtering (LightFM + WARP-KOS) | 0.39675516       | 0.5046003379627569    |
 
 > K = 5
 
 | Model                                        | Precision\@K     | Recall\@K             |
 | -------------------------------------------- |------------------|-----------------------|
-| Collaborative Filtering (LightFM + WARP-KOS) | 0.38982305       | 0.9168525179168349    |
-| Content-Based Filtering (LightFM + WARP-KOS) | 0.31106195       | 0.7963030714264894    |
+| Collaborative Filtering (LightFM + WARP-KOS) | 0.38982305       | 0.9146288402013032    |
+| Content-Based Filtering (LightFM + WARP-KOS) | 0.3060472        | 0.783271200892335     |
 
 > K = 10
 
 | Model                                        | Precision\@K     | Recall\@K             |
 | -------------------------------------------- |------------------|-----------------------|
-| Collaborative Filtering (LightFM + WARP-KOS) | 0.24321535       | 0.9602789827849669    |
-| Content-Based Filtering (LightFM + WARP-KOS) | 0.21799408       | 0.914914543738712     |
+| Collaborative Filtering (LightFM + WARP-KOS) | 0.24410029       | 0.9611317684068246    |
+| Content-Based Filtering (LightFM + WARP-KOS) | 0.21666665       | 0.9105260008583977    |
 
 ---------------
 

@@ -524,20 +524,20 @@ model2 = LightFM(loss='warp-kos')
 |index|ISBN|Book-Title|Book-Author|Year-Of-Publication|Publisher|
 |---|---|---|---|---|---|
 |19|0452264464|Beloved \(Plume Contemporary Fiction\)|Toni Morrison|1994|Plume|
-|748|0385504209|The Da Vinci Code|Dan Brown|2003|Doubleday|
-|3225|3596122279|Das Superwieb|Hera Lind|2002|Distribooks Inc|
-|3405|8806134817|Quel Che Resta Del Giorno|Kazuo Ishiguro|1998|Einaudi|
-|4729|068480087X|POSTCARDS|Annie Proulx|1994|Scribner|
+|67|0804106304|The Joy Luck Club|Amy Tan|1994|Prentice Hall \(K-12\)|
+|1051|0671510053|SHIPPING NEWS|Annie Proulx|1994|Scribner|
+|1105|0060928336|Divine Secrets of the Ya-Ya Sisterhood: A Novel|Rebecca Wells|1997|Perennial|
+|4430|0375727345|House of Sand and Fog|Andre Dubus III|2000|Vintage Books|
 
 > Content-based filtering model
 
 |index|ISBN|Book-Title|Book-Author|Year-Of-Publication|Publisher|
 |---|---|---|---|---|---|
-|132|0451205197|Lady in Green/Minor Indiscretions \(Signet Regency Romance\)|Barbara Metzger|2002|Signet Book|
-|2655|0590629808|The Message \(Animorphs , No 4\)|K\. A\. Applegate|1996|Scholastic|
-|3239|059042761X|Wednesday Witch|Ruth Chew|1969|Scholastic Paperbacks \(Mm\)|
-|4464|0571097103|Whitsun Weddings|Philip Larkin|1964|Faber &amp; Faber|
-|5403|0812553993|Lion of Ireland \(Celtic World of Morgan Llywelyn\)|Morgan Llywelyn|1996|Tor Books|
+|1201|0743457943|Trading Places|Fern Michaels|2003|Pocket Star|
+|2955|0425144569|For All Eternity|Linda Lael Miller|1994|Berkley Publishing Group|
+|5697|0812550897|The Wandering Arm \(Catherine Levendevr Mystery Series , Vol 3\)|Sharan Newman|1996|Tor Books \(Mm\)|
+|6053|1594082316|New England Interlude|Maria Elena Morgan|2003|Cork Hill Press|
+|6449|0451163540|Triple|Ken Follett|1991|Signet Book|
 
 #### Tentang WARP-KOS
 
